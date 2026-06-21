@@ -59,7 +59,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggleLocale}
-            className="px-3 py-1.5 rounded-full bg-ink/5 hover:bg-ink/10 text-xs font-[family-name:var(--font-mono)] tracking-wider text-ink/70 hover:text-ink border border-ink/10 hover:border-ink/30 transition-all duration-300"
+            className="px-3 py-1.5 rounded-full bg-teal/10 hover:bg-teal/20 text-xs font-[family-name:var(--font-mono)] tracking-widest font-medium text-teal hover:text-teal-dark border border-teal/20 hover:border-teal/40 transition-all duration-300"
             aria-label={locale === "en" ? "Switch to Arabic" : "التبديل إلى الإنجليزية"}
           >
             {locale === "en" ? "AR" : "EN"}
@@ -96,7 +96,7 @@ export function Header() {
               ))}
               <button
                 onClick={() => { toggleLocale(); setOpen(false); }}
-                className="py-3 text-ink-soft/80 hover:text-ink transition-colors text-left font-[family-name:var(--font-mono)] text-xs tracking-wider"
+                className="py-3 text-teal font-[family-name:var(--font-mono)] text-xs tracking-widest font-medium"
               >
                 {locale === "en" ? "AR — العربية" : "EN — English"}
               </button>
