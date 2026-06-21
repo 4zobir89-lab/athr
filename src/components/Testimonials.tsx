@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quotes } from "@phosphor-icons/react";
+import { ChatCircleText } from "@phosphor-icons/react";
 
 const testimonials = [
   {
@@ -60,7 +60,7 @@ export function Testimonials() {
               }}
               className="glass-card rounded-2xl p-8 md:p-10 hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)] transition-shadow duration-500"
             >
-              <Quotes size={20} className="text-teal/30 mb-6" />
+              <ChatCircleText size={20} className="text-teal/30 mb-6" />
               <p className="text-sm md:text-base text-ink-soft/70 leading-relaxed mb-8 italic">
                 &ldquo;{t.quote}&rdquo;
               </p>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   Brain,
   LinkSimple,
-  FlowArrow,
+  ArrowUpRight,
   ClockCounterClockwise,
   Note,
   PuzzlePiece,
@@ -24,7 +24,7 @@ const features = [
     size: "small",
   },
   {
-    icon: FlowArrow,
+    icon: ArrowUpRight,
     title: "Threading",
     desc: "Follow the natural flow of thought. Branch, merge, and revisit without losing context.",
     size: "small",
