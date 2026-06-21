@@ -28,7 +28,7 @@ export function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="max-w-content flex items-center justify-between h-16 md:h-20 px-6" dir="ltr">
+      <div className="max-w-content flex items-center justify-between h-16 md:h-20 px-6">
         <a href="#" className="flex items-center gap-2 group">
           <span className="font-[family-name:var(--font-display)] text-xl italic text-ink">
             أثر
@@ -48,28 +48,30 @@ export function Header() {
               {label}
             </a>
           ))}
-          <button
-            onClick={toggleLocale}
-            className="px-3 py-1.5 rounded-full border border-ink/20 text-xs font-[family-name:var(--font-mono)] tracking-wider text-ink-soft/60 hover:text-ink hover:border-ink/40 transition-all duration-300"
-            aria-label={locale === "en" ? "Switch to Arabic" : "التبديل إلى الإنجليزية"}
-          >
-            {locale === "en" ? "AR" : "EN"}
-          </button>
           <a
             href="#cta"
-            className="ml-4 px-5 py-2.5 rounded-full bg-ink text-ivory text-sm font-medium hover:bg-ink-soft transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+            className="px-5 py-2.5 rounded-full bg-ink text-ivory text-sm font-medium hover:bg-ink-soft transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
           >
             {t.header.cta}
           </a>
         </nav>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden relative z-50 p-2"
-          aria-label={t.header.toggleMenu}
-        >
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleLocale}
+            className="px-3 py-1.5 rounded-full bg-ink/5 hover:bg-ink/10 text-xs font-[family-name:var(--font-mono)] tracking-wider text-ink/70 hover:text-ink border border-ink/10 hover:border-ink/30 transition-all duration-300"
+            aria-label={locale === "en" ? "Switch to Arabic" : "التبديل إلى الإنجليزية"}
+          >
+            {locale === "en" ? "AR" : "EN"}
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden relative z-50 p-2"
+            aria-label={t.header.toggleMenu}
+          >
           {open ? <X size={20} /> : <List size={20} />}
         </button>
+      </div>
       </div>
 
       <AnimatePresence>
