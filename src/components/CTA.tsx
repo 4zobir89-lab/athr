@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "@phosphor-icons/react";
+import { useLocale } from "@/lib/locale-context";
 
 export function CTA() {
+  const { t } = useLocale();
+
   return (
     <section id="cta" className="section-padding relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-teal/3 to-teal/5" />
@@ -16,7 +19,7 @@ export function CTA() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="eyebrow">Begin your journey</span>
+          <span className="eyebrow">{t.cta.eyebrow}</span>
         </motion.div>
 
         <motion.h2
@@ -30,8 +33,8 @@ export function CTA() {
           }}
           className="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-ink mt-6 mb-6 max-w-3xl mx-auto"
         >
-          Ready to leave an
-          <span className="italic text-teal"> أثر?</span>
+          {t.cta.heading[0]}
+          <span className="italic text-teal"> {t.cta.heading[1]}</span>
         </motion.h2>
 
         <motion.p
@@ -45,7 +48,7 @@ export function CTA() {
           }}
           className="text-lg text-ink-soft/65 max-w-xl mx-auto mb-10"
         >
-          Join the waitlist. Be among the first to experience a new way of thinking.
+          {t.cta.sub}
         </motion.p>
 
         <motion.div
@@ -64,10 +67,10 @@ export function CTA() {
             className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-ink text-ivory text-sm font-medium hover:bg-ink-soft transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             onClick={(e) => {
               e.preventDefault();
-              alert("Thank you for your interest. The waitlist opens soon.");
+              alert(t.cta.alert);
             }}
           >
-            Join the waitlist
+            {t.cta.button}
             <ArrowRight
               size={16}
               className="group-hover:translate-x-0.5 transition-transform"
@@ -86,7 +89,7 @@ export function CTA() {
           }}
           className="text-xs text-metal mt-6"
         >
-          No spam. No rush. Just an invitation when we&apos;re ready.
+          {t.cta.finePrint}
         </motion.p>
       </div>
     </section>

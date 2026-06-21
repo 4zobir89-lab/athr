@@ -2,27 +2,11 @@
 
 import { motion } from "framer-motion";
 import { X, GithubLogo, InstagramLogo } from "@phosphor-icons/react";
-
-const footerLinks = [
-  {
-    title: "Product",
-    links: ["Philosophy", "Features", "Pricing", "Changelog"],
-  },
-  {
-    title: "Company",
-    links: ["About", "Blog", "Careers", "Press"],
-  },
-  {
-    title: "Support",
-    links: ["Documentation", "Guides", "API Reference", "Contact"],
-  },
-  {
-    title: "Legal",
-    links: ["Privacy", "Terms", "Security", "Cookies"],
-  },
-];
+import { useLocale } from "@/lib/locale-context";
 
 export function Footer() {
+  const { t } = useLocale();
+
   return (
     <footer className="section-padding bg-ink text-ivory relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-teal/2 blur-[150px] pointer-events-none" />
@@ -38,14 +22,14 @@ export function Footer() {
             >
               <a href="#" className="flex items-center gap-2 mb-4">
                 <span className="font-[family-name:var(--font-display)] text-2xl italic text-ivory">
-                  أثر
+                  {t.footer.logo}
                 </span>
                 <span className="font-[family-name:var(--font-mono)] text-[10px] tracking-[0.2em] uppercase text-ivory/30 -mt-1">
                   Athr
                 </span>
               </a>
               <p className="text-sm text-ivory/40 leading-relaxed max-w-sm mb-6">
-                A quiet space where your ideas become living systems. Leaving an أثر on everything you create.
+                {t.footer.desc}
               </p>
               <div className="flex items-center gap-3">
                 {[X, GithubLogo, InstagramLogo].map((Icon, i) => (
@@ -62,8 +46,8 @@ export function Footer() {
             </motion.div>
           </div>
 
-          {footerLinks.map((group, i) => (
-            <div key={group.title}>
+          {t.footer.columns.map((col, i) => (
+            <div key={col.title}>
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -75,10 +59,10 @@ export function Footer() {
                 }}
               >
                 <h4 className="font-[family-name:var(--font-mono)] text-[11px] tracking-[0.15em] uppercase text-ivory/30 mb-5">
-                  {group.title}
+                  {col.title}
                 </h4>
                 <ul className="space-y-3">
-                  {group.links.map((link) => (
+                  {col.links.map((link) => (
                     <li key={link}>
                       <a
                         href="#"
@@ -97,10 +81,10 @@ export function Footer() {
 
         <div className="pt-8 border-t border-ivory/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-ivory/30">
-            &copy; {new Date().getFullYear()} Athr. All rights reserved.
+            {t.footer.copyright}
           </p>
           <p className="text-xs text-ivory/20 font-[family-name:var(--font-mono)]">
-            Made with intention
+            {t.footer.tagline}
           </p>
         </div>
       </div>

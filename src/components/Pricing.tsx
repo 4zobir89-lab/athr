@@ -2,55 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Check, ArrowRight } from "@phosphor-icons/react";
-
-const plans = [
-  {
-    name: "Free",
-    price: "0",
-    desc: "For explorers. Start weaving your thoughts into living systems.",
-    features: [
-      "1,000 fragments",
-      "Basic spatial canvas",
-      "Manual connections",
-      "7-day timeline",
-      "Community access",
-    ],
-    cta: "Begin for free",
-    featured: false,
-  },
-  {
-    name: "Pro",
-    price: "12",
-    desc: "For creators and researchers building deep knowledge systems.",
-    features: [
-      "Unlimited fragments",
-      "Full spatial canvas",
-      "Auto-weave AI",
-      "Unlimited timeline",
-      "Export to any format",
-      "API access",
-    ],
-    cta: "Start free trial",
-    featured: true,
-  },
-  {
-    name: "Studio",
-    price: "38",
-    desc: "For teams weaving collective intelligence together.",
-    features: [
-      "Everything in Pro",
-      "Team spaces",
-      "Shared canvases",
-      "Admin controls",
-      "Priority AI processing",
-      "Dedicated support",
-    ],
-    cta: "Contact sales",
-    featured: false,
-  },
-];
+import { useLocale } from "@/lib/locale-context";
 
 export function Pricing() {
+  const { t } = useLocale();
+
   return (
     <section id="pricing" className="section-padding relative overflow-hidden bg-ivory-dark/30">
       <div className="max-w-content">
@@ -61,7 +17,7 @@ export function Pricing() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-4"
         >
-          <span className="eyebrow">Pricing</span>
+          <span className="eyebrow">{t.pricing.eyebrow}</span>
         </motion.div>
 
         <motion.h2
@@ -71,7 +27,7 @@ export function Pricing() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-ink mb-4 max-w-3xl"
         >
-          Simple, quiet pricing
+          {t.pricing.heading}
         </motion.h2>
 
         <motion.p
@@ -81,11 +37,11 @@ export function Pricing() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg text-ink-soft/65 max-w-xl mb-12"
         >
-          No hidden tiers. No features hidden behind paywalls. Just the right plan for how you think.
+          {t.pricing.sub}
         </motion.p>
 
         <div className="grid md:grid-cols-3 gap-6 items-start">
-          {plans.map((plan, i) => (
+          {t.pricing.plans.map((plan, i) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 32 }}
@@ -97,7 +53,7 @@ export function Pricing() {
                 ease: [0.16, 1, 0.3, 1],
               }}
               className={`rounded-2xl p-8 md:p-10 transition-all duration-500 ${
-                plan.featured
+                plan.popular
                   ? "glass-card !bg-ink !text-ivory shadow-[0_8px_40px_rgba(0,0,0,0.12)] scale-[1.02]"
                   : "glass-card hover:shadow-[0_8px_40px_rgba(0,0,0,0.06)]"
               }`}
@@ -107,7 +63,7 @@ export function Pricing() {
               </h3>
               <p
                 className={`text-sm mb-6 ${
-                  plan.featured ? "text-ivory/60" : "text-ink-soft/60"
+                  plan.popular ? "text-ivory/60" : "text-ink-soft/60"
                 }`}
               >
                 {plan.desc}
@@ -118,10 +74,10 @@ export function Pricing() {
                 </span>
                 <span
                   className={`text-sm ${
-                    plan.featured ? "text-ivory/50" : "text-metal"
+                    plan.popular ? "text-ivory/50" : "text-metal"
                   }`}
                 >
-                  /month
+                  {t.pricing.suffix}
                 </span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -130,13 +86,13 @@ export function Pricing() {
                     <Check
                       size={14}
                       className={`mt-0.5 ${
-                        plan.featured ? "text-teal-light" : "text-teal"
+                        plan.popular ? "text-teal-light" : "text-teal"
                       }`}
                       weight="bold"
                     />
                     <span
                       className={
-                        plan.featured ? "text-ivory/70" : "text-ink-soft/65"
+                        plan.popular ? "text-ivory/70" : "text-ink-soft/65"
                       }
                     >
                       {f}
@@ -147,7 +103,7 @@ export function Pricing() {
               <a
                 href="#cta"
                 className={`flex items-center justify-between w-full px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
-                  plan.featured
+                  plan.popular
                     ? "bg-ivory text-ink hover:bg-ivory/90"
                     : "bg-ink/5 text-ink-soft/80 hover:bg-ink/10"
                 }`}

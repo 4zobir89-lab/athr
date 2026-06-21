@@ -4,15 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, X } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import { useLocale } from "@/lib/locale-context";
 
-const navItems = [
-  { label: "Philosophy", href: "#philosophy" },
-  { label: "Product", href: "#product" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-];
+const navHrefs = ["#philosophy", "#product", "#how-it-works", "#pricing"];
 
 export function Header() {
+  const { t, locale, toggleLocale } = useLocale();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,7 +28,7 @@ export function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="max-w-content flex items-center justify-between h-16 md:h-20 px-6">
+      <div className="max-w-content flex items-center justify-between h-16 md:h-20 px-6" dir="ltr">
         <a href="#" className="flex items-center gap-2 group">
           <span className="font-[family-name:var(--font-display)] text-xl italic text-ink">
             أثر
@@ -42,27 +39,34 @@ export function Header() {
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+          {t.header.nav.map((label: string, i: number) => (
             <a
-              key={item.href}
-              href={item.href}
+              key={navHrefs[i]}
+              href={navHrefs[i]}
               className="text-sm text-ink-soft/70 hover:text-ink transition-colors duration-300"
             >
-              {item.label}
+              {label}
             </a>
           ))}
+          <button
+            onClick={toggleLocale}
+            className="px-3 py-1.5 rounded-full border border-ink/20 text-xs font-[family-name:var(--font-mono)] tracking-wider text-ink-soft/60 hover:text-ink hover:border-ink/40 transition-all duration-300"
+            aria-label={locale === "en" ? "Switch to Arabic" : "التبديل إلى الإنجليزية"}
+          >
+            {locale === "en" ? "AR" : "EN"}
+          </button>
           <a
             href="#cta"
             className="ml-4 px-5 py-2.5 rounded-full bg-ink text-ivory text-sm font-medium hover:bg-ink-soft transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
           >
-            Get early access
+            {t.header.cta}
           </a>
         </nav>
 
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden relative z-50 p-2"
-          aria-label="Toggle menu"
+          aria-label={t.header.toggleMenu}
         >
           {open ? <X size={20} /> : <List size={20} />}
         </button>
@@ -78,22 +82,28 @@ export function Header() {
             className="md:hidden glass absolute top-full inset-x-0 border-t border-white/20"
           >
             <nav className="flex flex-col gap-1 p-6">
-              {navItems.map((item) => (
+              {t.header.nav.map((label: string, i: number) => (
                 <a
-                  key={item.href}
-                  href={item.href}
+                  key={navHrefs[i]}
+                  href={navHrefs[i]}
                   onClick={() => setOpen(false)}
                   className="py-3 text-ink-soft/80 hover:text-ink transition-colors"
                 >
-                  {item.label}
+                  {label}
                 </a>
               ))}
+              <button
+                onClick={() => { toggleLocale(); setOpen(false); }}
+                className="py-3 text-ink-soft/80 hover:text-ink transition-colors text-left font-[family-name:var(--font-mono)] text-xs tracking-wider"
+              >
+                {locale === "en" ? "AR — العربية" : "EN — English"}
+              </button>
               <a
                 href="#cta"
                 onClick={() => setOpen(false)}
                 className="mt-4 px-5 py-3 rounded-full bg-ink text-ivory text-sm font-medium text-center"
               >
-                Get early access
+                {t.header.cta}
               </a>
             </nav>
           </motion.div>

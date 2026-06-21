@@ -1,23 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const screens = [
-  {
-    title: "The canvas",
-    subtitle: "Your thoughts, arranged spatially. No lists. No tables. Just ideas floating in relation to each other.",
-  },
-  {
-    title: "The weave",
-    subtitle: "Watch connections form across time. Athr surfaces relationships you never consciously made.",
-  },
-  {
-    title: "The emergence",
-    subtitle: "Fragments become structure. Ideas become systems. Chaos becomes creation.",
-  },
-];
+import { useLocale } from "@/lib/locale-context";
 
 export function Showcase() {
+  const { t } = useLocale();
+
   return (
     <section className="section-padding relative overflow-hidden bg-ink">
       <div className="absolute inset-0 pointer-events-none">
@@ -34,7 +22,7 @@ export function Showcase() {
           className="mb-4"
         >
           <span className="font-[family-name:var(--font-mono)] text-[0.6875rem] tracking-[0.18em] uppercase text-teal-light">
-            The experience
+            {t.showcase.eyebrow}
           </span>
         </motion.div>
 
@@ -45,8 +33,8 @@ export function Showcase() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-ivory mb-6 max-w-3xl"
         >
-          See it
-          <span className="italic text-teal-light"> in motion</span>
+          {t.showcase.heading[0]}
+          <span className="italic text-teal-light"> {t.showcase.heading[1]}</span>
         </motion.h2>
 
         <motion.p
@@ -56,12 +44,12 @@ export function Showcase() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg text-ivory/50 leading-relaxed max-w-xl mb-16"
         >
-          A glimpse into how Athr feels — not just what it does.
+          {t.showcase.sub}
         </motion.p>
       </div>
 
       <div className="max-w-content relative z-10 px-6">
-        {screens.map((screen, i) => (
+        {t.showcase.screens.map((screen, i) => (
           <motion.div
             key={screen.title}
             initial={{ opacity: 0, y: 40 }}

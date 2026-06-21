@@ -3,8 +3,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Sparkle } from "@phosphor-icons/react";
+import { useLocale } from "@/lib/locale-context";
 
 export function Philosophy() {
+  const { t } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -25,7 +27,7 @@ export function Philosophy() {
           className="flex items-center gap-2 mb-4"
         >
           <Sparkle size={12} className="text-teal" weight="fill" />
-          <span className="eyebrow">The idea</span>
+          <span className="eyebrow">{t.philosophy.eyebrow}</span>
         </motion.div>
 
         <motion.h2
@@ -35,28 +37,11 @@ export function Philosophy() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl leading-[1.1] text-ink mb-8 max-w-4xl"
         >
-          Your mind is full of scattered thoughts, fragments, half-formed ideas.
-          <span className="italic text-teal"> What if they had a home?</span>
+          {t.philosophy.heading}
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 mt-16">
-          {[
-            {
-              label: "01",
-              title: "Chaos into clarity",
-              body: "Every great creation starts as noise. Athr gently weaves your fragments into connected structures — not by force, but by understanding the patterns you naturally create.",
-            },
-            {
-              label: "02",
-              title: "Ideas that evolve",
-              body: "Unlike static notes or rigid task managers, Athr breathes with you. Your ideas grow, connect, and reshape themselves as your thinking deepens over time.",
-            },
-            {
-              label: "03",
-              title: "A space, not a dashboard",
-              body: "No notifications. No crowded interfaces. Just a quiet digital sanctuary where you can think, create, and let your work surface naturally.",
-            },
-          ].map((item, i) => (
+          {t.philosophy.items.map((item: { label: string; title: string; body: string }, i: number) => (
             <motion.div
               key={item.label}
               initial={{ opacity: 0, y: 32 }}

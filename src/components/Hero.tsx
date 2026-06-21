@@ -3,8 +3,10 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkle } from "@phosphor-icons/react";
+import { useLocale } from "@/lib/locale-context";
 
 export function Hero() {
+  const { t } = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -35,7 +37,7 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center justify-center gap-2 mb-8"
         >
-          <span className="eyebrow">Where ideas become living systems</span>
+          <span className="eyebrow">{t.hero.eyebrow}</span>
           <Sparkle size={12} className="text-teal" weight="fill" />
         </motion.div>
 
@@ -45,9 +47,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           className="font-[family-name:var(--font-display)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight text-ink mb-6 text-balance"
         >
-          Turn your thoughts into
+          {t.hero.headline[0]}
           <br />
-          <span className="italic text-teal">something that lasts</span>
+          <span className="italic text-teal">{t.hero.headline[1]}</span>
         </motion.h1>
 
         <motion.p
@@ -56,8 +58,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg md:text-xl text-ink-soft/65 leading-relaxed max-w-2xl mx-auto mb-10"
         >
-          Athr is not a tool. It is a space where your ideas breathe, connect,
-          and evolve into intelligent systems — quietly, beautifully, without the noise.
+          {t.hero.sub}
         </motion.p>
 
         <motion.div
@@ -70,7 +71,7 @@ export function Hero() {
             href="#cta"
             className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-ink text-ivory text-sm font-medium hover:bg-ink-soft transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
           >
-            Begin your thread
+            {t.hero.ctaPrimary}
             <ArrowRight
               size={16}
               className="group-hover:translate-x-0.5 transition-transform"
@@ -80,7 +81,7 @@ export function Hero() {
             href="#product"
             className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-ink/10 text-ink-soft/70 text-sm hover:border-ink/20 hover:text-ink transition-all duration-300"
           >
-            See the experience
+            {t.hero.ctaSecondary}
           </a>
         </motion.div>
       </motion.div>
