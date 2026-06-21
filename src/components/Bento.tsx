@@ -10,7 +10,7 @@ import {
   PuzzlePiece,
 } from "@phosphor-icons/react";
 
-const features = [
+const features: { icon: any; title: string; desc: string; size: "small" | "large" }[] = [
   {
     icon: Brain,
     title: "Spatial canvas",
