@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f8f6f1;
+  --color-ivory-light: #faf8f4;
+  --color-ivory-dark: #f0ece3;
+  --color-ink: #1a1817;
+  --color-ink-soft: #2a2827;
+  --color-teal: #1a6b6b;
+  --color-teal-light: #2a8a8a;
+  --color-teal-dark: #0f4a4a;
+  --color-blue-glow: #7ab7e8;
+  --color-blue-subtle: #d4e8f5;
+  --color-metal: #8a8682;
+  --color-metal-light: #b8b4ae;
+  --color-glass: rgba(255, 255, 255, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.2);
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background-color: var(--color-teal);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 2px 32px rgba(0, 0, 0, 0.04);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .section-padding {
+    padding: 6rem 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding: 10rem 2rem;
+    }
+  }
+  .max-w-content {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
